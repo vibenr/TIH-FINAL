@@ -7,7 +7,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const bodyParser=require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
-const multer=require('multer');
+// const multer=require('multer');
 
 //models
 const adminLoginModel=require('./models/admin');
@@ -19,7 +19,10 @@ const ActivityModel=require('./models/activities');
 
 
 let app = express();
-
+const port = process.env.PORT || 3000; 
+app.listen(port, () => {
+  console.log('deployed')
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,6 +35,15 @@ app.use(express.static(path.join(__dirname, '../TIH-React/public/')));
 
 
 //routes for data fetching
+
+const datatemp = {
+  name: 'vaibhav', 
+  rollno: 200280116010,
+};
+
+app.get('/', (req, res) => {
+      res.send(datatemp); 
+})
 
 app.get('/api/services',(req,res)=>{
   let allrecord=ServicesModel.find({},(err,data)=>{
@@ -71,28 +83,28 @@ app.get('/api/services',(req,res)=>{
 
 //routes for data entering
 
-let Storage=multer.diskStorage({
-  destination:"../TIH-React/public/images/",
-  filename:(req,file,cb)=>{
-    cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
-  }
-})
+// let Storage=multer.diskStorage({
+//   destination:"../TIH-React/public/images/",
+//   filename:(req,file,cb)=>{
+//     cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
+//   }
+// })
 
 
-let upload=multer({
-  storage:Storage
-}).single('file');
-
-
-
+// let upload=multer({
+//   storage:Storage
+// }).single('file');
 
 
 
-app.post('/addform/services',upload,(req,res)=>{
+
+
+
+app.post('/addform/services',(req,res)=>{
 
   let title=req.body.title;
   let description=req.body.description;
-  let image=req.file.filename;
+  // let image=req.file.filename;
 
   let data=new ServicesModel({
     title,description,image
@@ -105,11 +117,11 @@ app.post('/addform/services',upload,(req,res)=>{
 
 
 
-app.post('/addform/courses',upload,(req,res)=>{
+app.post('/addform/courses',(req,res)=>{
 
   let title=req.body.title;
   let description=req.body.description;
-  let image=req.file.filename;
+  // let image=req.file.filename;
 
   let data=new CoursesModel({
     title,description,image
@@ -138,11 +150,11 @@ app.post('/addform/activities',urlencodedParser,(req,res)=>{
 
 
 
-app.post('/addform/startup',upload,(req,res)=>{
+app.post('/addform/startup',(req,res)=>{
 
   let title=req.body.title;
   let description=req.body.description;
-  let image=req.file.filename;
+  // let image=req.file.filename;
   
   let data=new StartupsModel({
     title,description,image
@@ -157,20 +169,20 @@ app.post('/addform/startup',upload,(req,res)=>{
 
 
 
-/*
-app.post('/addadmin',(req,res)=>{
-  let username=req.body.name;
-  let password=req.body.password;
 
-    const hashpassword=await bcrypt.hash(password,(err,hash)=>{
-      let adddata=new adminLoginModel({
-        username,password:hashpassword
-      })
-      adddata.save();
-      res.json({success:"Admin Added Successfully"})
-    })
+// app.post('/addadmin',(req,res)=>{
+//   let username=req.body.name;
+//   let password=req.body.password;
+
+//     const hashpassword=await bcrypt.hash(password,(err,hash)=>{
+//       let adddata=new adminLoginModel({
+//         username,password:hashpassword
+//       })
+//       adddata.save();
+//       res.json({success:"Admin Added Successfully"})
+//     })
   
-}) */
+// }) 
 
 
 app.post("/checkadmin",urlencodedParser,async(req,res)=>{
@@ -212,7 +224,7 @@ app.post("/checkadmin",urlencodedParser,async(req,res)=>{
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error =req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
@@ -220,6 +232,8 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
 
 
 

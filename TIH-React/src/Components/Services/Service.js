@@ -24,12 +24,12 @@ const [initial,final]=useState([]);
 useEffect(()=>{
 
 	let servicedata=async()=>{
-		await fetch('/api/services').then(res=>{
+		await fetch(' https://tihbackend.herokuapp.com/api/services').then(res=>{
 			if(res.ok){
 				return res.json();
 			}
 		}).then(jsonres=>final(jsonres))
-	
+	console.log(final);
 	}
 	servicedata();
 

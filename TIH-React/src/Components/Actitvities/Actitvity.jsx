@@ -11,7 +11,7 @@ const [initial,final]=useState([]);
 	useEffect(()=>{
 	
 		let servicedata=async()=>{
-			await fetch('/api/activity').then(res=>{
+			await fetch(' https://tihbackend.herokuapp.com/api/activity').then(res=>{
 				if(res.ok){
 					return res.json();
 				}

@@ -28,7 +28,7 @@ function Startup() {
 	useEffect(()=>{
 	
 		let servicedata=async()=>{
-			await fetch('/api/startup').then(res=>{
+			await fetch('https://tihbackend.herokuapp.com/api/startup').then(res=>{
 				if(res.ok){
 					return res.json();
 				}

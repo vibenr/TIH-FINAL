@@ -16,7 +16,7 @@ function Service() {
 	useEffect(()=>{
 	
 		let servicedata=async()=>{
-			await fetch('/api/courses').then(res=>{
+			await fetch(' https://tihbackend.herokuapp.com/api/courses').then(res=>{
 				if(res.ok){
 					return res.json();
 				}
