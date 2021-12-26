@@ -6,10 +6,14 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Link } from 'react-router-dom';
 
+const style = {
+	backgroundColor: "#212426"
+}
+
 function Footer() {
 	return (
 		<footer className = "relative bottom-0 w-full">
-			<div className='w-full p-4  bg-black '>
+			<div className='w-full p-4   ' style = {style}>
 				<div className='flex justify-center align-items-center'>
 					<h1 className='text-xl font-weight-bolder text-white font-semibold'>Join Us</h1>
 				</div>
