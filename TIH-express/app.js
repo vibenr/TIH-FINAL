@@ -6,6 +6,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const bodyParser=require('body-parser');
+const cors=require('cors')
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 // const multer=require('multer');
 
@@ -16,9 +17,13 @@ const CoursesModel=require('./models/courses');
 const StartupsModel=require('./models/startups');
 const ActivityModel=require('./models/activities');
 
-
+let corsOptions = {
+  origin: 'https://tihfrontend.herokuapp.com/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 let app = express();
+app.use(cors(corsOptions))
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {
   console.log('deployed')
