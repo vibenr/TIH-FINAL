@@ -1,13 +1,13 @@
-          require('./ConnectDb/mongoose')
-          let createError = require('http-errors')
-          let bcrypt = require('bcryptjs')
-          let express = require('express')
-          let path = require('path')
-          const cors = require('cors')
-          let cookieParser = require('cookie-parser')
-          let logger = require('morgan')
-          const bodyParser = require('body-parser')
-          let urlencodedParser = bodyParser.urlencoded({ extended: false })
+        require('./ConnectDb/mongoose')
+        let createError = require('http-errors')
+        let bcrypt = require('bcryptjs')
+        let express = require('express')
+        let path = require('path')
+        const cors = require('cors')
+        let cookieParser = require('cookie-parser')
+        let logger = require('morgan')
+        const bodyParser = require('body-parser')
+        let urlencodedParser = bodyParser.urlencoded({ extended: false })
 // const multer=require('multer');
 
 //models

@@ -34,7 +34,7 @@ function Startup() {
 				}
 			}).then((jsonres)=>
 			{
-console.log(jsonres)
+	console.log(jsonres)
 				final(jsonres)
 			}
 			)
