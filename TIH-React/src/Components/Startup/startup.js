@@ -32,8 +32,12 @@ function Startup() {
 				if(res.ok){
 					return res.json();
 				}
-			}).then(jsonres=>final(jsonres))
-		
+			}).then((jsonres)=>
+			{
+console.log(jsonres)
+				final(jsonres)
+			}
+			)
 		}
 		servicedata();
 	

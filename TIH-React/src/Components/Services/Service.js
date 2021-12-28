@@ -28,8 +28,13 @@ useEffect(()=>{
 			if(res.ok){
 				return res.json();
 			}
-		}).then(jsonres=>final(jsonres))
-	console.log(final);
+		}).then((jsonres)=>
+		{
+console.log(jsonres)
+			final(jsonres)
+		}
+		)
+
 	}
 	servicedata();
 
